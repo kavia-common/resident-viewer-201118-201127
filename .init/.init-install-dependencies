@@ -1,0 +1,4 @@
+{
+    "command": "npm install",
+    "working_directory": "/home/kavia/workspace/code-generation/resident-viewer-201118-201127/resident_directory_frontend"
+}
