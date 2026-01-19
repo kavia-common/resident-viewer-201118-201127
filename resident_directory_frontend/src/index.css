@@ -1,6 +1,10 @@
 :root {
+  /* Brand */
   --primary: #3b82f6;
   --success: #06b6d4;
+  --error: #ef4444;
+
+  /* Light theme defaults */
   --background: #f9fafb;
   --surface: #ffffff;
   --text: #111827;
@@ -8,6 +12,38 @@
   --border: rgba(17, 24, 39, 0.10);
   --shadow: 0 10px 25px rgba(17, 24, 39, 0.08);
   --radius: 16px;
+
+  /* Derived tokens (used across components) */
+  --navBg: rgba(249, 250, 251, 0.85);
+  --footerBg: rgba(249, 250, 251, 0.85);
+  --controlBg: rgba(17, 24, 39, 0.06);
+  --controlBgHover: rgba(17, 24, 39, 0.10);
+  --sectionBg: rgba(249, 250, 251, 0.50);
+  --skeletonBase: rgba(17, 24, 39, 0.08);
+  --shimmerMid: rgba(255, 255, 255, 0.65);
+
+  /* Hint to UA for built-in form controls */
+  color-scheme: light;
+}
+
+/* Dark theme overrides: set by <html data-theme="dark"> */
+html[data-theme="dark"] {
+  --background: #0b1220; /* deep blue-gray */
+  --surface: #0f172a;    /* slate-900-ish */
+  --text: #e5e7eb;       /* gray-200 */
+  --muted: #94a3b8;      /* slate-400 */
+  --border: rgba(148, 163, 184, 0.18);
+  --shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+
+  --navBg: rgba(15, 23, 42, 0.72);
+  --footerBg: rgba(15, 23, 42, 0.72);
+  --controlBg: rgba(226, 232, 240, 0.10);
+  --controlBgHover: rgba(226, 232, 240, 0.16);
+  --sectionBg: rgba(2, 6, 23, 0.55);
+  --skeletonBase: rgba(226, 232, 240, 0.10);
+  --shimmerMid: rgba(255, 255, 255, 0.10);
+
+  color-scheme: dark;
 }
 
 * {
