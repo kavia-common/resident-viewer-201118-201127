@@ -1,48 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Navigate, Route, Routes, Link } from "react-router-dom";
+import "./App.css";
+import ResidentsPage from "./pages/ResidentsPage";
+import ResidentDetailPage from "./pages/ResidentDetailPage";
 
-// PUBLIC_INTERFACE
+/**
+ * PUBLIC_INTERFACE
+ */
 function App() {
-  const [theme, setTheme] = useState('light');
-
-  // Effect to apply theme to document element
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  // PUBLIC_INTERFACE
-  const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
-  };
-
+  /** App entry: provides routing between resident list and resident detail views. */
   return (
-    <div className="App">
-      <header className="App-header">
-        <button 
-          className="theme-toggle" 
-          onClick={toggleTheme}
-          aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-        >
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p>
-          Current theme: <strong>{theme}</strong>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <BrowserRouter>
+      <div className="AppShell">
+        <a className="skipLink" href="#mainContent">
+          Skip to content
         </a>
-      </header>
-    </div>
+
+        <header className="topNav">
+          <div className="navInner">
+            <Link to="/" className="brand" aria-label="Resident Directory Home">
+              <span className="brandMark" aria-hidden="true" />
+              <span className="brandText">Resident Directory</span>
+            </Link>
+
+            <nav aria-label="Primary navigation" className="navLinks">
+              <Link className="navLink" to="/">
+                Residents
+              </Link>
+            </nav>
+          </div>
+        </header>
+
+        <div id="mainContent">
+          <Routes>
+            <Route path="/" element={<ResidentsPage />} />
+            <Route path="/resident/:id" element={<ResidentDetailPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+
+        <footer className="footer">
+          <div className="footerInner">
+            <span className="muted">
+              Frontend-only demo • Local mock data in <code>src/data/residents.js</code>
+            </span>
+          </div>
+        </footer>
+      </div>
+    </BrowserRouter>
   );
 }
 
